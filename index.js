@@ -453,10 +453,10 @@ function testGen(swagger, config) {
   handlebars.registerPartial('schema-partial', schemaTemp);
   source = read(join(__dirname, '/templates/environment.handlebars'), 'utf8');
   environment = handlebars.compile(source, {noEscape: true});
-  helpers.len = 80;
+  helpers.setLen(80);
 
-  if (config.maxLen && !isNaN(config.maxLen)) {
-    helpers.len = config.maxLen;
+  if (!isNaN(config.maxLen)) {
+    helpers.setLen(config.maxLen);
   }
 
   if (!targets || targets.length === 0) {
